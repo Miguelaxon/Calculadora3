@@ -11,19 +11,17 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     String operador = new String();
-    double numero1, numero2, resultado;
+    double resultado = 0;
     TextView concatenarTexto;
     int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
 
         TextView numero = findViewById(R.id.num1);
         Button btnCero = findViewById(R.id.buttonCero);
@@ -48,142 +46,135 @@ public class MainActivity extends AppCompatActivity {
         btnCero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "0");
             }
         });
         btnUno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "1");
             }
         });
         btnDos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "2");
             }
         });
         btnTres.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "3");
             }
         });
         btnCuatro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "4");
             }
         });
         btnCinco.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "5");
             }
         });
         btnSeis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "6");
             }
         });
         btnSiete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "7");
             }
         });
         btnOcho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "8");
             }
         });
         btnNueve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
+                concatenarTexto = findViewById(R.id.num1);
                 numero.setText(concatenarTexto.getText().toString() + "9");
             }
         });
         btnDecimal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView concatenarTexto = findViewById(R.id.num1);
-                numero.setText(concatenarTexto.getText().toString() + ",");
+                concatenarTexto = findViewById(R.id.num1);
+                if (numero.getText().length() == 0){
+                    numero.setText("0");
+                }
+                numero.setText(concatenarTexto.getText().toString() + ".");
             }
         });
         btnMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 concatenarTexto = findViewById(R.id.num1);
+                if (concatenarTexto.getText().length() == 0){
+                    numero.setText("0");
+                }
                 operador = "+";
-                numero1 = Double.parseDouble(concatenarTexto.getText().toString());
-                numero.setText("");
+                numero.setText(concatenarTexto.getText().toString() + operador);
             }
         });
         btnMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 concatenarTexto = findViewById(R.id.num1);
+                if (concatenarTexto.getText().length() == 0){
+                    numero.setText("0");
+                }
                 operador = "-";
-                numero1 = Double.parseDouble(concatenarTexto.getText().toString());
-                numero.setText("");
+                numero.setText(concatenarTexto.getText().toString() + operador);
             }
         });
         btnMultiplicar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 concatenarTexto = findViewById(R.id.num1);
+                if (concatenarTexto.getText().length() == 0){
+                    numero.setText("0");
+                }
                 operador = "*";
-                numero1 = Double.parseDouble(concatenarTexto.getText().toString());
-                numero.setText("");
+                numero.setText(concatenarTexto.getText().toString() + operador);
             }
         });
         btnDividir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 concatenarTexto = findViewById(R.id.num1);
+                if (concatenarTexto.getText().length() == 0){
+                    numero.setText("0");
+                }
                 operador = "/";
-                numero1 = Double.parseDouble(concatenarTexto.getText().toString());
-                numero.setText("");
-            }
-        });
-        btnNegativo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String operador2 = "-";
+                numero.setText(concatenarTexto.getText().toString() + operador);
             }
         });
         btnIgual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 concatenarTexto = findViewById(R.id.num1);
-                numero2 = Double.parseDouble(concatenarTexto.getText().toString());
-                if(operador == "+"){
-                    resultado = numero1 + numero2;
-                    numero.setText("");
-                }
-                if(operador == "-"){
-                    resultado = numero1 - numero2;
-                    numero.setText("");
-                }
-                if(operador == "*"){
-                    resultado = numero1 * numero2;
-                    numero.setText("");
-                }
-                if(operador == "/"){
-                    resultado = numero1 / numero2;
-                    numero.setText("");
+                //String[] oprs = {"+","-","*","/"};
+                String[] op = concatenarTexto.getText().toString().split("\\+");
+                for(int i = 0; i < op.length; i++){
+                    resultado += Double.parseDouble((op[i]));
                 }
                 numero.setText(String.valueOf(resultado));
             }
@@ -191,8 +182,6 @@ public class MainActivity extends AppCompatActivity {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numero1 = 0;
-                numero2 = 0;
                 numero.setText("");
             }
         });
